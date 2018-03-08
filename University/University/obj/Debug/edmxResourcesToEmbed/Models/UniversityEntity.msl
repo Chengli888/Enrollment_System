@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UniversityEntityStoreContainer" CdmEntityContainer="UniversityEntityContainer">
+    <EntitySetMapping Name="CourseSet">
+      <EntityTypeMapping TypeName="IsTypeOf(UniversityEntity.Course)">
+        <MappingFragment StoreEntitySet="CourseSet">
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Credits" ColumnName="Credits" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnrollmentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(UniversityEntity.Enrollment)">
+        <MappingFragment StoreEntitySet="EnrollmentSet">
+          <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(UniversityEntity.Student)">
+        <MappingFragment StoreEntitySet="StudentSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstMidName" ColumnName="FirstMidName" />
+          <ScalarProperty Name="Enrollment" ColumnName="Enrollment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CourseEnrollment" TypeName="UniversityEntity.CourseEnrollment" StoreEntitySet="EnrollmentSet">
+      <EndProperty Name="Course">
+        <ScalarProperty Name="CourseID" ColumnName="Course_CourseID" />
+      </EndProperty>
+      <EndProperty Name="Enrollment">
+        <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StudentEnrollment" TypeName="UniversityEntity.StudentEnrollment" StoreEntitySet="EnrollmentSet">
+      <EndProperty Name="Student">
+        <ScalarProperty Name="ID" ColumnName="Student_ID" />
+      </EndProperty>
+      <EndProperty Name="Enrollment">
+        <ScalarProperty Name="EnrollmentID" ColumnName="EnrollmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
